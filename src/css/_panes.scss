@@ -1,0 +1,217 @@
+/*===== Code Pane =====*/
+#code {
+    display: flex;
+    flex-direction: column;
+    color: $c-primary;
+    background-color: #444;
+    overflow: hidden;
+}
+#code-body {
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    font-size: $fs-small;
+    font-family: $f-code;
+}
+
+/*===== Constraints Pane =====*/
+#constraints {
+    color: $c-primary;
+    flex-grow: 0;
+    flex-shrink: 0;
+    
+    .radio-group {
+        border-radius: 1rem;
+        overflow: hidden;
+        width: 10rem;
+    }
+    .radio-item {
+        min-width: 2rem;
+        text-align: center;
+        flex-grow: 1;
+    }
+    .input-group {
+        input[type='number'] {
+            width: 4.5rem;
+        }
+        select {
+            min-width: 4.5rem;
+        }
+        input[type='text']{
+            width: 4.5rem;
+        }
+    }
+}
+
+.constraint-label {
+    padding: $s-default-padding;
+}
+
+/*===== Keyword Pane =====*/
+#keyword {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#keyword-inputs {
+    color: $c-primary;
+    display: flex;
+    flex-shrink: 0;
+    
+    input {
+        flex-grow: 1;
+        margin: $s-default-padding;
+    }
+}
+
+#keyword-display {
+    flex-grow: 1;
+    flex-shrink: 0;
+    margin: $s-default-padding;
+    margin-top: 0;
+    padding: $s-default-padding;
+    background-color: $c-primary-bkg;
+}
+
+/*===== Preview Pane =====*/
+#preview {
+    background-color: black;
+    flex-grow: 0;
+    flex-shrink: 0;
+    .pane-handle {
+        display: flex;
+        justify-content: space-between;
+        
+        input {
+            max-width: 50%;
+            font-size: $fs-tiny;
+            padding: .2em .5em;
+        }
+    }
+}
+
+#preview-window {
+    position: relative;
+    text-align: center;
+    height: 4rem;
+}
+
+#preview-text {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: $f-poe;
+    color: rgba(127, 127, 127, 1);
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid;
+    border-color: rgba(0,0,0,0);
+}
+
+/*===== Theme Pane =====*/
+#styles {
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    
+    .input-group {
+        background-color: inherit;
+        margin-top: 1rem;
+    }
+}
+
+#style-controls {
+    display: flex;
+    background-color: inherit;
+}
+#visual-controls {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 1rem $s-gutter $s-gutter $s-gutter;
+    padding: $s-gutter;
+    border: $o-default-border;
+    border-color: $c-primary;
+}
+#audio-controls {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 1rem $s-gutter $s-gutter $s-gutter;
+    padding: $s-gutter;
+    border: $o-default-border;
+    border-color: $c-primary;
+}
+
+.sp-replacer {
+    border: none;
+    outline: none;
+    padding: $s-default-padding;
+    background-color: #111;
+}
+
+.visual-item {
+    display: flex;
+    margin-top: $s-gutter;
+}
+.visual-item>* {
+    display: block;
+    padding: $s-default-padding;
+}
+.visual-item>span:last-child {
+    color: $c-primary;
+}
+
+#styles-sound {
+    display: flex;
+    flex-wrap: wrap;
+}
+.sound {
+    /*flex-grow: 1;*/
+    margin: $s-gutter-small;
+    padding: $s-default-padding;
+    text-align: center;
+    color: $c-primary;
+    background-color: $c-primary-bkg;
+    width: 2rem;
+    cursor: pointer;
+}
+.sound:hover, .sound.selected {
+    color: $c-primary-bkg;
+    background-color: $c-primary;
+}
+
+.control-group-label {
+    padding: $s-default-padding;
+    width: 3.75rem;
+    text-align: center;
+    color: $c-primary;
+    background-color: inherit;
+    margin-top: -1.25rem;
+}
+
+.slider-control {
+    display: flex;
+    margin-top: $s-gutter;
+    span {
+        color: $c-primary;
+        padding: $s-default-padding;
+    }
+    input {
+        margin-right: $s-gutter;
+        flex-grow: 1;
+    }
+}
+
+#styles-sound-positional {
+    display: flex;
+    margin-top: $s-gutter;
+    span {
+        color: $c-primary;
+        padding: $s-default-padding;
+    }
+    
+}

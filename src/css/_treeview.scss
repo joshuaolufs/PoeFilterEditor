@@ -1,0 +1,69 @@
+/* Tree View */
+#treeview{
+    position: relative;
+    flex-grow: 1;
+    padding: $s-gutter-small;
+    background-color: $c-treeview-bkg;
+    overflow-y: scroll;
+}
+
+.tv-handle {
+    display: flex;
+    position: relative;
+    margin-bottom: $s-gutter-small;
+    cursor: pointer;
+    background-color: inherit;
+    border-color: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.tv-expandable {
+    padding: $s-default-padding;
+    height: 100%;
+}
+
+.tv-label {
+    flex-grow: 1;
+    padding: $s-default-padding;
+}
+
+.tv-filter {
+    color: $c-filter;
+    border-left: 1px solid $c-filter-bkg;
+    margin-bottom: $s-gutter-small;
+    .tv-handle {
+        background-color: $c-filter-bkg;
+    }
+}
+.tv-group {
+    font-size: $fs-small;
+    margin-left: $s-group-indent;
+    color: $c-group;
+    border-left: 1px dashed $c-group-bkg;
+    margin-bottom: $s-gutter-small;
+    .tv-handle {
+        margin-left: -1px;
+        background-color: $c-group-bkg;
+    }
+}
+.tv-rule {
+    font-size: $fs-tiny;
+    color: $c-rule;
+    border-color: $c-rule-bkg;
+    .tv-handle {
+        background-color: $c-rule-bkg;
+        border-radius: $s-rule-radius;
+        margin-left: $s-gutter-small;
+    }
+}
+
+#treeview .selected {
+    border-right: 4px solid;
+}
+
+.tv-code {
+    padding: $s-default-padding;
+    font-size: fs-small !important;
+    font-family: $f-code;
+}

@@ -1,0 +1,15 @@
+{
+    "min":[
+        "./node_modules/jquery/dist/jquery.min.js"
+    ],
+    "other":[
+        "./node_modules/spectrum-colorpicker/spectrum.js",
+        "./node_modules/codemirror/lib/codemirror.js",
+        "./src/js/jquery-ui/jquery-ui.js",
+        "./src/js/rule-model.js",
+        "./src/js/code-mirror/code-mirror.js",
+        "./src/js/code-mirror/poe.js",
+        "./src/js/linker.js",
+        "./src/js/unordered/**/*.js"
+    ]
+}
