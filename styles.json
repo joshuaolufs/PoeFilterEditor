@@ -1,0 +1,10 @@
+{
+    "css":[
+        "./node_modules/spectrum-colorpicker/spectrum.css",
+        "./node_modules/codemirror/lib/codemirror.css",
+        "./src/css/**/*.css"
+    ],
+    "scss":[
+        "./src/css/**/*.scss"
+    ]
+}

@@ -1,0 +1,98 @@
+/* Routes */
+$d-fonts: "../fonts/";
+    
+/* Fonts */
+$f-default: General, Arial, Helvetica, sans-serif;
+$f-code: Code, Courier, monospace;
+$f-poe: POE, sans-serif;
+
+$ff-default: "Roboto-Regular.ttf";
+$ff-code: "Inconsolata-Regular.ttf";
+$ff-poe: "Fontin-SmallCaps.ttf";
+
+$fs-huge: 1.25rem;
+$fs-large: 1.125rem;
+$fs-normal: 1rem; /*Most stuff*/
+$fs-small: .875rem; /*Groups*/
+$fs-tiny: .75rem; /*Rules*/
+
+/* Colors */
+$c-primary: yellowgreen;
+$c-primary-bkg: #111;
+$c-primary-hover: #eee;
+$c-primary-hover-bkg: #555;
+$c-primary-disabled: #666;
+
+$c-text-input: #ddd;
+$c-text-input-bkg: #444;
+$c-text-input-focus: #eee;
+$c-text-input-focus-bkg: #555;
+
+$c-filter: #fa3;/*#fa2;*/
+$c-filter-bkg: #111;
+$c-filter-hover: #eee;
+$c-filter-hover-bkg: #555;
+$c-filter-selected: #666;
+$c-filter-selected: #666;
+
+$c-group: #da2;/*#d90;/*LightSeaGreen;*/
+$c-group-bkg: #333;
+$c-group-hover: #eee;
+$c-group-hover-bkg: #555;
+$c-group-selected: #666;
+$c-group-selected: #666;
+
+$c-rule: #db5;/*gold;*/
+$c-rule-bkg: #444;
+$c-rule-hover: #eee;
+$c-rule-hover-bkg: #555;
+$c-rule-selected: #666;
+$c-rule-selected: #666;
+
+$c-button-warning: #eee;
+$c-button-warning-bkg: #111;
+$c-button-warning-hover: #eee;
+$c-button-warning-hover-bkg: crimson;
+
+$c-button-primary: #111;
+$c-button-primary-bkg: $c-primary;
+$c-button-primary-hover: #111;
+$c-button-primary-hover-bkg: lime;
+
+$c-scrollbar-track: #555;
+$c-scrollbar-thumb: #333;
+
+$c-treeview-bkg: #666;
+
+/* Spacing */
+$s-sidebar-width: 16rem;
+$s-default-padding: .25rem .5rem;
+$s-input-radius: .5rem;
+$s-rule-radius: .5rem;
+$s-gutter: .25rem;
+$s-gutter-small: .125rem;
+$s-gutter-large: .5rem;
+$s-menu-padding: .25rem;
+$s-group-indent: .5rem;
+$s-scrollbar-width: 10px;
+
+/* Other Stuff */
+$o-scrollbar-boxshadow: inset 0 0 5px rgba(0,0,0,.5);
+$o-input-boxshadow: 0px 0px 2px 1px #8f8;
+$o-default-border: 1px solid;
+$o-fa-spacing: .5rem;
+
+
+/* Font Faces */
+@font-face {
+    font-family: General;
+    src: url("#{$d-fonts}#{$ff-default}");
+}
+@font-face {
+    font-family: Code;
+    src: url("#{$d-fonts}#{$ff-code}");
+}
+@font-face {
+    font-family: POE;
+    src: url("#{$d-fonts}#{$ff-poe}");
+}

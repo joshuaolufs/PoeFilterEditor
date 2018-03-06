@@ -1,0 +1,42 @@
+main {
+    display: flex;
+    align-items: stretch;
+    position: absolute;
+    left: $s-sidebar-width;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+main>.pane-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.pane {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: $s-gutter;
+    background-color: $c-treeview-bkg;
+    border: $o-default-border;
+    border-color: $c-primary-bkg;
+}
+
+.pane-handle {
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: $s-default-padding;
+    color: $c-primary;
+    background-color: $c_primary-bkg;
+    margin: -1px -1px 0px -1px;
+}
+.pane-handle:hover {
+    cursor: pointer;
+}
+
+.pane-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+}

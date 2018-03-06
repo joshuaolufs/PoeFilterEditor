@@ -1,0 +1,29 @@
+{
+  "name": "FilterEditor",
+  "version": "1.0.0",
+  "description": "Path of Exile Filter Editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Metamilo (aka. Joshua K. Olufs)",
+  "license": "ISC",
+  "dependencies": {
+    "codemirror": "^5.35.0",
+    "jquery": "^3.3.1",
+    "spectrum-colorpicker": "^1.8.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "compression": "^1.7.2",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-gzip": "^1.4.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglifycss": "^1.0.9",
+    "http2": "^3.3.7",
+    "streamqueue": "^1.1.2"
+  }
+}

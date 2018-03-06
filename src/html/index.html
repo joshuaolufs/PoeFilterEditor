@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FilterEditor">
+    <head>
+        <!-- meta data -->
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name='description' content='A simple GUI for editing PoE filters'>
+        <meta name='keywords' content='metamilo, poe, filter, edit, path of exile'>
+        <meta name='author' content='Joshua K. Olufs, aka metamilo'>
+        <meta name='theme-color' content='#9ACD32'>
+        <!-- page info -->
+        <title>Simple Filter Editor</title>
+        <!-- icons -->
+        <link rel='shortcut icon' type='image/png' href='/images/favicon.png'>
+        <!-- styles -->
+        <link href="css/allStyles.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <noscript>Dude! You need to enable javascript to use this site.</noscript>
+        <nav id='sidebar'>
+            <div id='porting' class='menu'>
+                <div id='import' class='button'><i class='fa fa-fw fa-download'></i>Import</div>
+                <div id='export' class='button disabled'><i class='fa fa-fw fa-upload'></i>Export</div>
+            </div>
+            <div id='search'>
+                <input type='text' placeholder='Search'>
+            </div>
+            <div id='tv-menu' class='menu'>
+                <div class='menu-group'>
+                    <div id='tv-menu-delete' class='menu-item disabled'><i class='fa fa-fw fa-trash'></i></div>
+                    <div id='tv-menu-duplicate' class='menu-item disabled'><i class='fa fa-fw fa-clone'></i></div>
+                    <div id='tv-menu-rename' class='menu-item disabled'><i class='fa fa-fw fa-edit'></i></div>
+                </div>
+                <div class='menu-group'>
+                    <div id='tv-menu-new-filter' class='menu-item'><i class='fa fa-fw fa-file'></i></div>
+                    <div id='tv-menu-new-group' class='menu-item disabled'><i class='fa fa-fw fa-folder-open'></i></div>
+                    <div id='tv-menu-new-rule' class='menu-item disabled'><i class='fa fa-fw fa-plus'></i></div>
+                </div>
+            </div>
+            <div id='tv-menu-extras'>
+                <input id='tv-label-input' type='text'>
+                <div id='tv-delete-confirmation' class='menu'>
+                    <div id='tv-cancel-delete' class='button'>Cancel</div>
+                    <div id='tv-confirm-delete' class='button'>Delete</div>
+                </div>
+            </div>
+            <div id='treeview'></div>
+            <div id='notifications'>
+                <div id='restore-session' class='menu'>
+                    <div class='more-info menu-item disabled'><i class='fa fa-fw fa-question'></i></div>
+                    <div id='accept-restore'>Restore Previous Session</div>
+                    <div id='cancel-restore' class='menu-item disabled'><i class='fa fa-fw fa-ban'></i></div>
+                </div>
+            </div>
+            <div id='site-menu' class='menu'>
+                <div id='menu-settings' class='menu-item'><i class='fa fa-fw fa-cog'></i></div>
+                <div id='space-remaining'>0/5120 KB</div>
+                <div id='menu-info' class='menu-item'><i class='fa fa-fw fa-info'></i></div>
+            </div>
+            <div id='site-settings'>
+                This is the site settings. I haven't gotten around to this yet.
+            </div>
+            <div id='site-info'>
+                This is the site info. Hi, I'm metamilo, I made this.
+            </div>
+        </nav>
+        <main>
+            <div class='pane-wrapper'>
+                <div id='preview' class='pane'>
+                    <div class='pane-handle'>
+                        <div>Preview</div>
+                        <input id='preview-text-input' type='text'>
+                    </div>
+                    <div id='preview-window'>
+                        <div id='preview-text'>Epic Item</div>
+                    </div>
+                </div>
+                <div id='styles' class='pane'>
+                    <div class='pane-handle'>Theme</div>
+                    <div id='style-controls'>
+                        <div id='visual-controls' class='input-group'>
+                            <div class='control-group-label'>Visual</div>
+                            <div id='styles-text-color' class='visual-item'><span class='button'>Clear</span><input type='color'><span>Text</span></div>
+                            <div id='styles-background-color' class='visual-item'><span class='button'>Clear</span><input type='color'><span>Background</span></div>
+                            <div id='styles-border-color' class='visual-item'><span class='button'>Clear</span><input type='color'><span>Border</span></div>
+                            <div id='styles-text-size' class='slider-control'><span>Size</span><input type='range' min='18' max='45' value='32'></div>
+                        </div>
+                        <div id='audio-controls' class='input-group'>
+                            <div class='control-group-label'>Audio</div>
+                            <div id='styles-sound'>
+                                <div class='sound'>1<audio type='audio/mpeg' src='./sounds/AlertSound1.mp3'></audio></div>
+                                <div class='sound'>2<audio type='audio/mpeg' src='./sounds/AlertSound2.mp3'></audio></div>
+                                <div class='sound'>3<audio type='audio/mpeg' src='./sounds/AlertSound3.mp3'></audio></div>
+                                <div class='sound'>4<audio type='audio/mpeg' src='./sounds/AlertSound4.mp3'></audio></div>
+                                <div class='sound'>5<audio type='audio/mpeg' src='./sounds/AlertSound5.mp3'></audio></div>
+                                <div class='sound'>6<audio type='audio/mpeg' src='./sounds/AlertSound6.mp3'></audio></div>
+                                <div class='sound'>7<audio type='audio/mpeg' src='./sounds/AlertSound7.mp3'></audio></div>
+                                <div class='sound'>8<audio type='audio/mpeg' src='./sounds/AlertSound8.mp3'></audio></div>
+                                <div class='sound'>9<audio type='audio/mpeg' src='./sounds/AlertSound9.mp3'></audio></div>
+                                <div class='sound'>10<audio type='audio/mpeg' src='./sounds/AlertSound10.mp3'></audio></div>
+                                <div class='sound'>11<audio type='audio/mpeg' src='./sounds/AlertSound11.mp3'></audio></div>
+                                <div class='sound'>12<audio type='audio/mpeg' src='./sounds/AlertSound12.mp3'></audio></div>
+                                <div class='sound'>13<audio type='audio/mpeg' src='./sounds/AlertSound13.mp3'></audio></div>
+                                <div class='sound'>14<audio type='audio/mpeg' src='./sounds/AlertSound14.mp3'></audio></div>
+                                <div class='sound'>15<audio type='audio/mpeg' src='./sounds/AlertSound15.mp3'></audio></div>
+                                <div class='sound'>16<audio type='audio/mpeg' src='./sounds/AlertSound16.mp3'></audio></div>
+                            </div>
+                            <div id='styles-sound-positional'><div class='checkbox'><div></div></div><span>Positional</span></div>
+                            <div id='styles-sound-volume' class='slider-control'><span>Volume</span><input type='range' min='0' max='300' value='0'></div>
+                        </div>
+                    </div>
+                </div>
+                <div id='code' class='pane'>
+                    <div class='pane-handle'>Code</div>
+                    <div id='code-body'>
+                        <textarea id='cm-editor'></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class='pane-wrapper'>
+                <div id='constraints' class='pane'>
+                    <div class='pane-handle'>Constraints</div>
+                    <div id='constraint-itemlevel' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <input type='number'>
+                        <div class='constraint-label'>ItemLevel</div>
+                    </div>
+                    <div id='constraint-droplevel' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <input type='number'>
+                        <div class='constraint-label'>DropLevel</div>
+                    </div>
+                    <div id='constraint-quality' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <input type='number'>
+                        <div class='constraint-label'>Quality</div>
+                    </div>
+                    <div id='constraint-sockets' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value=''></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='4'>5</option>
+                            <option value='4'>6</option>
+                        </select>
+                        <div class='constraint-label'>Sockets</div>
+                    </div>
+                    <div id='constraint-linkedsockets' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value=''></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='4'>5</option>
+                            <option value='4'>6</option>
+                        </select>
+                        <div class='constraint-label'>LinkedSockets</div>
+                    </div>
+                    <div id='constraint-height' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value=''></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                        </select>
+                        <div class='constraint-label'>Height</div>
+                    </div>
+                    <div id='constraint-width' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value=''></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                        </select>
+                        <div class='constraint-label'>Width</div>
+                    </div>
+                    <div id='constraint-rarity' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value=''></option>
+                            <option value='normal'>Normal</option>
+                            <option value='magic'>Magic</option>
+                            <option value='rare'>Rare</option>
+                            <option value='unique'>Unique</option>
+                        </select>
+                        <div class='constraint-label'>Rarity</div>
+                    </div>
+
+                    <div id='constraint-shaperitem' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                        <div class='constraint-label'>ShaperItem</div>
+                    </div>
+                    <div id='constraint-elderitem' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                        <div class='constraint-label'>ElderItem</div>
+                    </div>
+                    <div id='constraint-identified' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                        <div class='constraint-label'>Identified</div>
+                    </div>
+                    <div id='constraint-corrupted' class='input-group'>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                        <div class='constraint-label'>Corrupted</div>
+                    </div>
+                    <div id='constraint-socketgroup' class='input-group'>
+                        <input type='text'>
+                        <div class='constraint-label'>SocketGroup</div>
+                    </div>
+                </div>
+                <div id='keyword' class='pane'>
+                    <div class='pane-handle'>Keywords</div>
+                    <div id='keyword-inputs'>
+                        <input id='keyword-class' type='text' placeholder='Class'>
+                        <input id='keyword-basetype' type='text' placeholder='BaseType'>
+                    </div>
+                    <div id='keyword-display'></div>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script src="js/allScripts.min.js" async></script>
+</html>

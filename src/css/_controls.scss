@@ -1,0 +1,154 @@
+/*===== Menu =====*/
+.menu {
+    display: flex;
+    flex-shrink: 0;
+    color: $c-primary;
+    justify-content: space-between;
+    .menu-group {
+        display: flex;
+        flex-shrink: 0;
+    }
+}
+.menu-item {
+    padding: $s-menu-padding;
+    height: 100%;
+}
+.menu-item:not(.disabled):hover {
+    color: $c-primary-hover;
+    background-color: $c-primary-hover-bkg;
+}
+.menu-item.disabled {
+    color: $c-primary-disabled;
+    background-color: $c-primary-bkg;
+}
+
+/*===== Radio Group =====*/
+.radio-group {
+    display: flex;
+    border: 2px solid $c-primary;
+    
+    .radio-item {
+        color: $c-primary;
+        background-color: $c-primary-bkg;
+        padding: $s-default-padding;
+        cursor: pointer;
+        border-right: 2px solid $c-primary;
+    }
+    .radio-item:not(:last-of-type) {
+        border-right: none;
+    }
+    .radio-item:hover {
+        color: $c-primary-bkg;
+        background-color: $c-primary;
+    }
+    .radio-item.selected {
+        color: $c-primary-bkg;
+        background-color: $c-primary;
+    }
+    .radio-item.disabled {
+        color: $c-primary-disabled;
+    }
+}
+
+/*===== Input Group =====*/
+.input-group {
+    display: flex;
+    flex-shrink: 0;
+    margin: $s-gutter-small $s-gutter;
+}
+.input-group>*:not(:last-child) {
+    margin-right: $s-gutter;
+}
+
+/*===== Button =====*/
+.button {
+    padding: $s-default-padding;
+    color: $c-primary;
+    background-color: $c-primary-bkg;
+    border: $o-default-border;
+    border-color: $c-primary;
+    text-align: center;
+    cursor: pointer;
+}
+.button.disabled {
+    color: $c-primary-disabled;
+    border-color: $c-primary-disabled;
+}
+.button:not(.disabled):hover {
+    color: $c-primary-hover;
+    backgroud-color: $c-primary-hover-bkg;
+    border-color: $c-primary-hover;
+}
+
+/*===== Text Input =====*/
+input[type='text'] {
+    display: block;
+    padding: $s-default-padding;
+    width: 100%;
+    color: $c-text-input;
+    background-color: $c-text-input-bkg;
+    border: none;
+    border-radius: $s-input-radius;
+}
+input[type='text']:focus {
+    color: $c-text-input-focus;
+    background-color: $c-text-input-focus-bkg;
+    outline: none;
+    box-shadow: $o-input-boxshadow;
+}
+input[type='text']::placeholder {
+    color: $c-text-input;
+}
+
+/*===== Checkbox =====*/
+.checkbox {
+    margin: $s-default-padding;
+    background-color: #ddd;
+    width: 1.25rem;
+    border: $o-default-border;
+    border-color: $c-primary;
+}
+.checkbox>div {
+    content: "";
+    display: none;
+    position: relative;
+    top: .2rem;
+    left: .125rem;
+    width: .875rem;
+    height: .5rem;
+    border-left: 3px solid #111;
+    border-bottom: 3px solid #111;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.checkbox.checked {
+    background-color: $c-primary;
+}
+
+/*===== Sliders =====*/
+.slider-control {
+    input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: $s-gutter-small;
+        width: 100%;
+        height: 1.25rem;
+        background: #444;
+        outline: none;
+    }
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: $c-primary;
+        cursor: pointer;
+    }
+    input[type='range']::-moz-range-thumb {
+        width: 1.25rem;
+        height: 1.25rem;
+        background: $c-primary;
+        cursor: pointer;
+    }
+}
