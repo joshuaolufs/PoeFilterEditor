@@ -17,18 +17,16 @@ function tokenizeLine(lineIn) {
 
 // update functions
 function updateCodeFromTree(cm){
+    console.log("   start updateCodeFromTree");
     if ($('#treeview .selected').hasClass('tv-rule')) {
-        var ruleName = "#!rule " + $('.tv-rule.selected .tv-label').text() + "\n";
-        var code = ruleName + $('.tv-rule.selected .tv-code').text();
+        var code = $('.tv-rule.selected .tv-code').text();
         cm.setValue(code);
-        setTimeout(function() {
-            cm.refresh();
-        }, 1);
     }
+    console.log("   end updateCodeFromTree");
 }
 
 function updateModelFromCode(cm) {
-    console.log("start updateModelFromCode");
+    console.log("   start updateModelFromCode");
     // reset defaults
     rule.reset();
     
@@ -188,24 +186,27 @@ function updateModelFromCode(cm) {
                 break;
         }
     }
-    console.log("end updateModelFromCode");
+    console.log("   end updateModelFromCode");
 }
 
 function updateControlsFromModel() {
-    
+    console.log("   start updateControlsFromModel");
+    console.log("   end updateControlsFromModel");
 }
 
 function updateDisplayFromModel() {
+    console.log("   start updateDisplayFromModel");
     $("#preview-text").css({
         'font-size': Math.round(rule.text.size / 2) + "px",
         'color': rule.text.getColor(),
         'background-color': rule.background.getColor(),
         'border-color': rule.border.getColor()
     });
+    console.log("   end updateDisplayFromModel");
 }
 
 function updateTreeFromCode(cm) {
-    console.log("start updateTreeFromCode");
+    console.log("   start updateTreeFromCode");
     if ($('#treeview .selected').hasClass('tv-rule')) {
         // get the raw code
         var lines = cm.getValue('\n').split('\n');
@@ -215,37 +216,54 @@ function updateTreeFromCode(cm) {
             if (lines[i].includes("#!rule")) {
                 $('.tv-rule.selected .tv-label').text(lines[i].substring(7));
             }
-            else {
-                code = code + "\n" + lines[i];
-            }
+            code = code + "\n" + lines[i];
         }
         $('.tv-rule.selected .tv-code').text(code.trim());
     }
-    console.log("end updateTreeFromCode");
+    console.log("   end updateTreeFromCode");
 }
 
 function updateModelFromControls() {
-    rule.text.setSize($('#styles-text-size input[type="range"]').val());
-    rule.sound.setVolume($('#styles-sound-volume input[type="range"]').val());
+    console.log("   start updateModelFromControls");
+    
+    // Theme stuff
+    rule.text.setSize($('#styles-text-size>input[type="range"]').val());
+    rule.sound.setVolume($('#styles-sound-volume>input[type="range"]').val());
     rule.text.setColor($("#styles-text-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
     rule.background.setColor($("#styles-background-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
     rule.border.setColor($("#styles-border-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
+    
+    // Constraints stuff
+    
+    console.log("   end updateModelFromControls");
 }
 
 function updateCodeFromModel(cm) {
+    console.log("   start updateCodeFromModel");
     var code = rule.getFilterString();
     cm.setValue(code);
-    setTimeout(function() {
-        cm.refresh();
-    }, 1);
+    console.log("   end updateCodeFromModel");
 }
 
+
+
 // onEvent functions for external use
+
+// we need a lock to prevent infinite loops with onCodeChange
+// it is tested in the editor.on("change", ...) event handler
+var changeInProgress = false; 
+
 function onTreeSelect(cm) {
+    console.log("start onTreeSelect");
+    changeInProgress = true; // lock
+
     updateCodeFromTree(cm);
     updateModelFromCode(cm);
     updateControlsFromModel();
     updateDisplayFromModel();
+
+    changeInProgress = false; // unlock
+    console.log("end onTreeSelect");
 }
 
 function onCodeChange(cm) {
@@ -258,10 +276,16 @@ function onCodeChange(cm) {
 }
 
 function onControlChange(cm) {
+    console.log("start onControlChange");
+    changeInProgress = true; // lock
+
     updateModelFromControls();
     updateCodeFromModel(cm);
     updateTreeFromCode(cm);
     updateDisplayFromModel();
+
+    changeInProgress = false; // unlock
+    console.log("end onControlChange");
 }
 
 

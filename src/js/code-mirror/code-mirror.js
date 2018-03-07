@@ -10,6 +10,8 @@ $(document).ready(function() {
     });
     // Trigger onCodeChange chain when the editor code changes
     editor.on("change", function(cm, change) {
-        onCodeChange(cm);
+        if (!changeInProgress) {
+            onCodeChange(cm);
+        }
     });
 });

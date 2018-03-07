@@ -718,6 +718,7 @@ var rule = {
         output += this.text.getFilterString();
         output += this.background.getFilterString();
         output += this.border.getFilterString();
+        output += this.sound.getFilterString();
         
         return output.trim();
     }

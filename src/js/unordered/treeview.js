@@ -166,7 +166,7 @@ $(document).ready(function(){
                             <div class='tv-handle'>\
                                 <div class='tv-label'>New Rule</div>\
                             </div>\
-                            <pre class='tv-code'></pre>\
+                            <pre class='tv-code'>#!rule New Rule\n# Descriptive Comment</pre>\
                         </div>";
             var e;
             if ($(current).hasClass("tv-rule")){
@@ -177,9 +177,9 @@ $(document).ready(function(){
             }
             
             // activate rename field
-            $("#tv-label-input").val($("#treeview .selected>.tv-handle>.tv-label").text());
+            /*$("#tv-label-input").val($("#treeview .selected>.tv-handle>.tv-label").text());
             $("#tv-label-input").slideDown(200);
-            $("#tv-label-input").focus();
+            $("#tv-label-input").focus();*/
             
             // update menu
             updateTreeviewMenu();
@@ -221,7 +221,14 @@ $(document).ready(function(){
     });
     // update selected and hide when input loses focus
     $(document).on("blur", "#tv-label-input", function(){
+        // update the handle label
         $("#treeview .selected>.tv-handle>.tv-label").text($(this).val());
+        // update the code text
+        var temp = $("#treeview .selected.tv-rule>.tv-code").text();
+        $("#treeview .selected.tv-rule>.tv-code").text(temp.replace(/^(#!rule )([^\n]*)(.*)/, "$1" + $(this).val() + "$3"));
+        // propagate the changes to the editor
+        onTreeSelect(editor);
+        // hide when finished
         $(this).slideUp(200);
     });
 });

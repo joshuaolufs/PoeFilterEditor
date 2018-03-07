@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // Text color picker
 	$("#styles-text-color>input[type='color']").spectrum({
+        color: '#7f7f7f',
 		showInput: true,
 		showInitial: true,
 		allowEmpty: true,
@@ -8,9 +9,9 @@ $(document).ready(function(){
 		showPalette: true,
 		showSelectionPalette: true,
 		//clickoutFiresChange: false,
-		showButtons: false,
+		showButtons: true,
 		maxSelectionSize: 64,
-		hideAfterPaletteSelect: true,
+		hideAfterPaletteSelect: false,
 		chooseText: "Select",
 		localStorageKey: "spectrum.palette",
 		preferredFormat: "rgb",
@@ -36,6 +37,7 @@ $(document).ready(function(){
 	
 	// Background color picker
 	$("#styles-background-color>input[type='color']").spectrum({
+        color: 'rgba(0, 0, 0, .5)',
 		showInput: true,
 		showInitial: true,
 		allowEmpty: true,
@@ -70,6 +72,7 @@ $(document).ready(function(){
 	
 	// Border color picker
 	$("#styles-border-color>input[type='color']").spectrum({
+        color: 'rgba(127, 127, 127, 0)',
 		showInput: true,
 		showInitial: true,
 		allowEmpty: true,
