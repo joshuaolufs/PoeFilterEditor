@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
     
     // text input tabout
-    $(document).on("keydown", "input[type='text']", function(e) {
+    $(document).on("keydown", "input[type='text']:not(.multiple-entry)", function(e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode == 13) {
             e.preventDefault();
