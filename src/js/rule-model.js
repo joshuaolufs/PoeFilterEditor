@@ -3,7 +3,7 @@ function clamp(val, min, max) {
 }
 var rule = {
     name: "",
-    comment: "",
+    comments: [],
     type: "Show",
     text: {
         default: {
@@ -670,7 +670,7 @@ var rule = {
     reset: function()  {
         // reset defaults
         this.name = "";
-        this.comment = "";
+        this.comments = [];
         this.type = "Show";
         this.text.reset();
         this.border.reset();
@@ -696,8 +696,8 @@ var rule = {
         var output = "";
         
         output += "#!rule " + this.name + "\n";
-        if (this.comment.length > 0) {
-            output += "# " + this.comment + "\n";
+        for (var i=0; i<this.comments.length; i++) {
+            output += "# " + this.comments[i] + "\n";
         }
         output += this.type + "\n";
         output += this.classes.getFilterString();

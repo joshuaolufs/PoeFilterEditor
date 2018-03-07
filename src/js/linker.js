@@ -185,8 +185,7 @@ function updateModelFromCode(cm) {
                 rule.name = lines[i].substring(6).trim();
                 break;
             case '#':
-                rule.comment = lines[i].substring(1).trim();
-                break;
+                rule.comments.push(lines[i].substring(1).trim());
             default:
                 break;
         }
