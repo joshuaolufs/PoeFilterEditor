@@ -114,6 +114,7 @@ $(document).ready(function(){
         else {
             $(this).addClass("checked");
         }
+        onControlChange(editor);
     });
     
     // sounds
@@ -123,6 +124,7 @@ $(document).ready(function(){
 		$(this).children("audio")[0].currentTime = 0;
 		//$(this).children("audio")[0].volume = alertSound[1]/100; // must be in the range 0-1
 		$(this).children("audio")[0].play();
+        onControlChange(editor);
 	});
     
     // text size slider
@@ -131,7 +133,15 @@ $(document).ready(function(){
     });
     
     // volume slider
-    $("#styles-sound-volume").on("change input", function() {
+    $("#styles-sound-volume>input[type='range']").on("change input", function() {
+        if ($(this).val() === '0') { // if the volume is 0
+            // deselect all audio buttons
+            $(".sound.selected").removeClass("selected");
+        }
+        else if (!$(".sound.selected").exists()) {
+            // make sure something is selected
+            $(".sound:first-child").addClass("selected");
+        }
         onControlChange(editor);
     });
 });

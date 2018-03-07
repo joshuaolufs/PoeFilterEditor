@@ -15,6 +15,11 @@ function tokenizeLine(lineIn) {
     return result;
 }
 
+// extend jQuery by adding this function that returns if the selector set is empty
+$.fn.exists = function () {
+    return this.length !== 0;
+}
+
 // update functions
 function updateCodeFromTree(cm){
     console.log("   start updateCodeFromTree");
@@ -228,11 +233,13 @@ function updateModelFromControls() {
     
     // Theme stuff
     rule.text.setSize($('#styles-text-size>input[type="range"]').val());
-    rule.sound.setVolume($('#styles-sound-volume>input[type="range"]').val());
     rule.text.setColor($("#styles-text-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
     rule.background.setColor($("#styles-background-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
     rule.border.setColor($("#styles-border-color>input[type='color']").spectrum('get').toRgbString().replace(/^.+\(|\)/g, ''));
-    
+    rule.sound.setVolume($('#styles-sound-volume>input[type="range"]').val());
+    rule.sound.setId($('.sound.selected').text());
+    rule.sound.positional = $("#styles-sound-positional>.checkbox").hasClass("checked") ? true : false;
+    console.log("positional: " + rule.sound.positional);
     // Constraints stuff
     
     console.log("   end updateModelFromControls");
