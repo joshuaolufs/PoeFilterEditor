@@ -194,7 +194,7 @@ $(document).ready(function(){
             // duplicate
             $("#treeview .selected").after($("#treeview .selected").clone());
             // deselect it and it's clone
-            $("#treeview .selected").removeClass("tv-selected");
+            $("#treeview .selected").removeClass("selected");
             // reset menu
             updateTreeviewMenu();
             // Refresh sorting

@@ -9,9 +9,9 @@ $(document).ready(function(){
 		showPalette: true,
 		showSelectionPalette: true,
 		//clickoutFiresChange: false,
-		showButtons: true,
+		showButtons: false,
 		maxSelectionSize: 64,
-		hideAfterPaletteSelect: false,
+		hideAfterPaletteSelect: true,
 		chooseText: "Select",
 		localStorageKey: "spectrum.palette",
 		preferredFormat: "rgb",
@@ -20,18 +20,7 @@ $(document).ready(function(){
 			["rgba(27, 162, 155, 255);", "rgba(170, 158, 130, 255);", "rgba(74, 230, 58, 255);", "rgba(14, 186, 255, 255);"]
 		],
 		change: function(color) {
-            //var temp = color.toRgbString().replace(/^.+\(|\)/g, '');
 			onControlChange(editor);
-            // update stuff when a color is picked
-//			var temp = color.toRgbString().replace(/^.+\(|\)/g, '').split(", ");
-//			if (temp.length > 3) {
-//				temp[3] = Math.ceil(temp[3] * 255);
-//			}else {
-//				temp[temp.length] = 255;
-//			}
-//			textColor = temp;
-//			updateTextValues();
-//			updateDisplay();
 		}
 	});
 	
@@ -57,16 +46,6 @@ $(document).ready(function(){
 		],
 		change: function(color) {
             onControlChange(editor);
-            // update stuff when a color is picked
-//			var temp = color.toRgbString().replace(/^.+\(|\)/g, '').split(", ");
-//			if (temp.length > 3) {
-//				temp[3] = Math.ceil(temp[3] * 255);
-//			}else {
-//				temp[temp.length] = 255;
-//			}
-//			backgroundColor = temp;
-//			updateTextValues();
-//			updateDisplay();
 		}
 	});
 	
@@ -92,16 +71,6 @@ $(document).ready(function(){
 		],
 		change: function(color) {
             onControlChange(editor);
-            // update stuff when a color is picked
-//			var temp = color.toRgbString().replace(/^.+\(|\)/g, '').split(", ");
-//			if (temp.length > 3) {
-//				temp[3] = Math.ceil(temp[3] * 255);
-//			}else {
-//				temp[temp.length] = 255;
-//			}
-//			borderColor = temp;
-//			updateTextValues();
-//			updateDisplay();
         }
     });
     
@@ -122,7 +91,7 @@ $(document).ready(function(){
 		$(this).siblings(".sound").removeClass("selected");
 		$(this).addClass("selected");
 		$(this).children("audio")[0].currentTime = 0;
-		//$(this).children("audio")[0].volume = alertSound[1]/100; // must be in the range 0-1
+        $(this).children("audio")[0].volume = clamp($("#styles-sound-volume>input[type='range']").val() / 300, 0, 1); // must be in the range 0-1
 		$(this).children("audio")[0].play();
         onControlChange(editor);
 	});

@@ -15,13 +15,13 @@ var rule = {
             r: 127,
             g: 127,
             b: 127,
-            a: 1,
+            a: 255,
             toString: function() {
-                if (this.a == 1) {
+                if (this.a === 255) {
                     return this.r + " " + this.g + " " + this.b;
                 }
                 else {
-                    return this.r + " " + this.g + " " + this.b + " " + Math.round(this.a * 255);
+                    return this.r + " " + this.g + " " + this.b + " " + this.a;
                 }
             }
         },
@@ -37,11 +37,11 @@ var rule = {
             return sizeString + colorString;
         },
         getColor: function() {
-            if (this.color.a == 1) {
+            if (this.color.a == 255) {
                 return "rgb(" + this.color.r + "," + this.color.g + "," + this.color.b + ")";
             }
             else {
-                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
+                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + (this.color.a / 255) + ")";
             }
         },
         setSize: function(sizeIn) {
@@ -72,10 +72,10 @@ var rule = {
                             var alpha = Number(temp[3]);
                             if (typeof alpha === 'number') {
                                 if (alpha > 1) {
-                                    this.color.a = clamp((alpha / 255), 0, 1);
+                                    this.color.a = clamp(Math.round(alpha), 0, 255);
                                 }
                                 else {
-                                    this.color.a = clamp(alpha, 0, 1);
+                                    this.color.a = clamp(Math.round(alpha * 255), 0, 255);
                                 }
                             }
                             else {
@@ -83,7 +83,7 @@ var rule = {
                             }
                         }
                         else {
-                            this.color.a = 1;
+                            this.color.a = 255;
                         }
                         return true;
                     }
@@ -107,11 +107,11 @@ var rule = {
             b: 127,
             a: 0,
             toString: function() {
-                if (this.a == 1) {
-                    return this.r + " " + this.g + " " + this.b 
+                if (this.a === 255) {
+                    return this.r + " " + this.g + " " + this.b;
                 }
                 else {
-                    return this.r + " " + this.g + " " + this.b + " " + Math.round(this.a * 255);
+                    return this.r + " " + this.g + " " + this.b + " " + this.a;
                 }
             }
         },
@@ -123,11 +123,11 @@ var rule = {
             return "";
         },
         getColor: function() {
-            if (this.color.a == 1) {
+            if (this.color.a == 255) {
                 return "rgb(" + this.color.r + "," + this.color.g + "," + this.color.b + ")";
             }
             else {
-                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
+                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + (this.color.a / 255) + ")";
             }
         },
         setColor: function(colorIn) {
@@ -143,10 +143,10 @@ var rule = {
                             var alpha = Number(temp[3]);
                             if (typeof alpha === 'number') {
                                 if (alpha > 1) {
-                                    this.color.a = clamp((alpha / 255), 0, 1);
+                                    this.color.a = clamp(Math.round(alpha), 0, 255);
                                 }
                                 else {
-                                    this.color.a = clamp(alpha, 0, 1);
+                                    this.color.a = clamp(Math.round(alpha * 255), 0, 255);
                                 }
                             }
                             else {
@@ -154,7 +154,7 @@ var rule = {
                             }
                         }
                         else {
-                            this.color.a = 1;
+                            this.color.a = 255;
                         }
                         return true;
                     }
@@ -169,19 +169,19 @@ var rule = {
     },
     background: {
         default: {
-            color: "0 0 0 .5"
+            color: "0 0 0 128"
         },
         color: {
             r: 0,
             g: 0,
             b: 0,
-            a: .5,
+            a: 128,
             toString: function() {
-                if (this.a == 1) {
-                    return this.r + " " + this.g + " " + this.b 
+                if (this.a === 255) {
+                    return this.r + " " + this.g + " " + this.b;
                 }
                 else {
-                    return this.r + " " + this.g + " " + this.b + " " + Math.round(this.a * 255);
+                    return this.r + " " + this.g + " " + this.b + " " + this.a;
                 }
             }
         },
@@ -193,11 +193,11 @@ var rule = {
             return "";
         },
         getColor: function() {
-            if (this.color.a == 1) {
+            if (this.color.a == 255) {
                 return "rgb(" + this.color.r + "," + this.color.g + "," + this.color.b + ")";
             }
             else {
-                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
+                return "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + (this.color.a / 255) + ")";
             }
         },
         setColor: function(colorIn) {
@@ -213,10 +213,10 @@ var rule = {
                             var alpha = Number(temp[3]);
                             if (typeof alpha === 'number') {
                                 if (alpha > 1) {
-                                    this.color.a = clamp((alpha / 255), 0, 1);
+                                    this.color.a = clamp(Math.round(alpha), 0, 255);
                                 }
                                 else {
-                                    this.color.a = clamp(alpha, 0, 1);
+                                    this.color.a = clamp(Math.round(alpha * 255), 0, 255);
                                 }
                             }
                             else {
@@ -224,7 +224,7 @@ var rule = {
                             }
                         }
                         else {
-                            this.color.a = 1;
+                            this.color.a = 255;
                         }
                         return true;
                     }
