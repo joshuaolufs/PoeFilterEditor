@@ -112,12 +112,14 @@
 
 /*===== Preview Pane =====*/
 #preview {
+    display: flex;
     background-color: black;
     flex-grow: 0;
     flex-shrink: 0;
     .pane-handle {
         display: flex;
         justify-content: space-between;
+        flex-shrink: 0;
         
         input {
             max-width: 50%;
@@ -130,7 +132,9 @@
 #preview-window {
     position: relative;
     text-align: center;
+    flex-grow: 1;
     height: 4rem;
+    overflow: hidden;
 }
 
 #preview-text {
@@ -142,6 +146,7 @@
     background-color: rgba(0, 0, 0, .5);
     border: 1px solid;
     border-color: rgba(0,0,0,0);
+    text-align: center;
 }
 
 /*===== Theme Pane =====*/

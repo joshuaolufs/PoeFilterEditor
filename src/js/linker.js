@@ -1,4 +1,5 @@
-// helper functions
+//========== helper functions ==========
+// split a line into tokens split at spaces not contained by double quotes
 function tokenizeLine(lineIn) {
     var result = []
     var temp = lineIn.split('"');
@@ -20,7 +21,14 @@ $.fn.exists = function () {
     return this.length !== 0;
 }
 
-// update functions
+// decode html entities
+function htmlDecode(input) {
+    var temp = document.createElement('textarea');
+    temp.innerHTML = input;
+    return temp.value;
+}
+
+//========== update functions ==========
 function updateCodeFromTree(cm){
     console.log("   start updateCodeFromTree");
     if ($('#treeview .selected').hasClass('tv-rule')) {
@@ -195,6 +203,8 @@ function updateModelFromCode(cm) {
 
 function updateControlsFromModel() {
     console.log("   start updateControlsFromModel");
+    
+    
     console.log("   end updateControlsFromModel");
 }
 
@@ -240,6 +250,22 @@ function updateModelFromControls() {
     rule.sound.positional = $("#styles-sound-positional>.checkbox").hasClass("checked") ? true : false;
     console.log("positional: " + rule.sound.positional);
     // Constraints stuff
+    rule.itemlevel.operator = htmlDecode($("#constraint-itemlevel .radio-item.selected").text());
+    rule.itemlevel.setValue($("#constraint-itemlevel input").val());
+    rule.droplevel.operator = htmlDecode($("#constraint-droplevel .radio-item.selected").text());
+    rule.droplevel.setValue($("#constraint-droplevel input").val());
+    rule.quality.operator = htmlDecode($("#constraint-quality .radio-item.selected").text());
+    rule.quality.setValue($("#constraint-quality input").val());
+    rule.sockets.operator = htmlDecode($("#constraint-sockets .radio-item.selected").text());
+    rule.sockets.setValue($("#constraint-sockets input").val());
+    rule.linkedsockets.operator = htmlDecode($("#constraint-linkedsockets .radio-item.selected").text());
+    rule.linkedsockets.setValue($("#constraint-linkedsockets input").val());
+    rule.height.operator = htmlDecode($("#constraint-height .radio-item.selected").text());
+    rule.height.setValue($("#constraint-height input").val());
+    rule.width.operator = htmlDecode($("#constraint-width .radio-item.selected").text());
+    rule.width.setValue($("#constraint-width input").val());
+    
+    // Keyword stuff
     
     console.log("   end updateModelFromControls");
 }
@@ -253,45 +279,54 @@ function updateCodeFromModel(cm) {
 
 
 
-// onEvent functions for external use
+//========== onEvent functions for external use ==========
 
-// we need a lock to prevent infinite loops with onCodeChange
-// it is tested in the editor.on("change", ...) event handler
+// we need a lock to prevent infinite loops when propagating changes
 var changeInProgress = false; 
 
 function onTreeSelect(cm) {
-    console.log("start onTreeSelect");
-    changeInProgress = true; // lock
+    if (!changeInProgress) {
+        console.log("start onTreeSelect");
+        changeInProgress = true; // lock
 
-    updateCodeFromTree(cm);
-    updateModelFromCode(cm);
-    updateControlsFromModel();
-    updateDisplayFromModel();
+        updateCodeFromTree(cm);
+        updateModelFromCode(cm);
+        updateControlsFromModel();
+        updateDisplayFromModel();
 
-    changeInProgress = false; // unlock
-    console.log("end onTreeSelect");
+        changeInProgress = false; // unlock
+        console.log("end onTreeSelect");
+    }
 }
 
 function onCodeChange(cm) {
-    console.log("start onCodeChange");
-    updateTreeFromCode(cm);
-    updateModelFromCode(cm);
-    updateControlsFromModel();
-    updateDisplayFromModel();
-    console.log("end onCodeChange");
+    if (!changeInProgress) {
+        console.log("start onCodeChange");
+        changeInProgress = true; // lock
+        
+        updateTreeFromCode(cm);
+        updateModelFromCode(cm);
+        updateControlsFromModel();
+        updateDisplayFromModel();
+        
+        changeInProgress = false; // unlock
+        console.log("end onCodeChange");
+    }
 }
 
 function onControlChange(cm) {
-    console.log("start onControlChange");
-    changeInProgress = true; // lock
+    if (!changeInProgress) {
+        console.log("start onControlChange");
+        changeInProgress = true; // lock
 
-    updateModelFromControls();
-    updateCodeFromModel(cm);
-    updateTreeFromCode(cm);
-    updateDisplayFromModel();
+        updateModelFromControls();
+        updateCodeFromModel(cm);
+        updateTreeFromCode(cm);
+        updateDisplayFromModel();
 
-    changeInProgress = false; // unlock
-    console.log("end onControlChange");
+        changeInProgress = false; // unlock
+        console.log("end onControlChange");
+    }
 }
 
 

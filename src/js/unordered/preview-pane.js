@@ -31,6 +31,14 @@ $(document).ready(function(){
         maxHeight: 320,
         resize: function(e, ui) {
             ui.size.width = ui.originalSize.width;
+            // reposition example item
+            var draggable = $('#preview-text');
+            if (draggable.offset().top + draggable.outerHeight() > ui.element.offset().top + ui.size.height) {
+                draggable.offset({
+                    top: ui.element.offset().top + ui.size.height - draggable.outerHeight(),
+                    left: draggable.offset().left
+                });
+            }
         }
     });
     
