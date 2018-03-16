@@ -42,9 +42,13 @@
             width: 4.5rem;
         }
     }
+    #constraint-socketgroup>input[type='text'] {
+        min-width: 10rem;
+    }
 }
 
 .constraint-label {
+    flex-grow: 1;
     padding: $s-default-padding;
 }
 
@@ -79,7 +83,7 @@
     margin: $s-default-padding;
     padding: $s-gutter-small;
     margin-top: 0;
-    background-color: $c-primary-bkg;
+    background-color: #333;
     
     .keyword-item {
         display: block;
@@ -215,7 +219,7 @@
     text-align: center;
     color: $c-primary;
     background-color: $c-primary-bkg;
-    width: 2rem;
+    width: 2.25rem;
     cursor: pointer;
 }
 .sound:hover, .sound.selected {

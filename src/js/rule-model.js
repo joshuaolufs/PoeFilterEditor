@@ -348,12 +348,22 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
-                this.value = clamp(valueIn, 0, 100);
+                if (valueIn === this.default.value) {
+                    this.reset();
+                }
+                else {
+                    this.value = clamp(valueIn, 0, 100);
+                }
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
-                    this.value = clamp(Number(valueIn), 0, 100);
+                    if (valueIn === this.default.value) {
+                        this.reset();
+                    }
+                    else {
+                        this.value = clamp(Number(valueIn), 0, 100);
+                    }
                     return true;
                 }
             }
@@ -381,12 +391,22 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
-                this.value = clamp(valueIn, 0, 100);
+                if (valueIn === this.default.value) {
+                    this.reset();
+                }
+                else {
+                    this.value = clamp(valueIn, 0, 100);
+                }
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
-                    this.value = clamp(Number(valueIn), 0, 100);
+                    if (valueIn === this.default.value) {
+                        this.reset();
+                    }
+                    else {
+                        this.value = clamp(Number(valueIn), 0, 100);
+                    }
                     return true;
                 }
             }
@@ -414,12 +434,22 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
-                this.value = clamp(valueIn, 0, 20);
+                if (valueIn === this.default.value) {
+                    this.reset();
+                }
+                else {
+                    this.value = clamp(valueIn, 0, 20);
+                }
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
-                    this.value = clamp(Number(valueIn), 0, 20);
+                    if (valueIn === this.default.value) {
+                        this.reset();
+                    }
+                    else {
+                        this.value = clamp(Number(valueIn), 0, 20);
+                    }
                     return true;
                 }
             }
@@ -447,11 +477,19 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
+                if (valueIn === 0) {
+                    this.reset();
+                    return true;
+                }
                 this.value = clamp(valueIn, 1, 6);
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
+                    if (Number(valueIn) === 0) {
+                        this.reset();
+                        return true;
+                    }
                     this.value = clamp(Number(valueIn), 1, 6);
                     return true;
                 }
@@ -480,11 +518,19 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
+                if (valueIn === 0) {
+                    this.reset();
+                    return true;
+                }
                 this.value = clamp(valueIn, 1, 6);
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
+                    if (Number(valueIn) === 0) {
+                        this.reset();
+                        return true;
+                    }
                     this.value = clamp(Number(valueIn), 1, 6);
                     return true;
                 }
@@ -513,11 +559,19 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
+                if (valueIn === 0) {
+                    this.reset();
+                    return true;
+                }
                 this.value = clamp(valueIn, 1, 4);
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
+                    if (Number(valueIn) === 0) {
+                        this.reset();
+                        return true;
+                    }
                     this.value = clamp(Number(valueIn), 1, 4);
                     return true;
                 }
@@ -546,11 +600,19 @@ var rule = {
         },
         setValue: function(valueIn) {
             if (typeof valueIn === 'number') {
+                if (valueIn === 0) {
+                    this.reset();
+                    return true;
+                }
                 this.value = clamp(valueIn, 1, 2);
                 return true;
             }
             else if (typeof valueIn === 'string') {
                 if (typeof Number(valueIn) === 'number') {
+                    if (Number(valueIn) === 0) {
+                        this.reset();
+                        return true;
+                    }
                     this.value = clamp(Number(valueIn), 1, 2);
                     return true;
                 }
@@ -601,9 +663,9 @@ var rule = {
     },
     identified: {
         default: {
-            value: null
+            value: "Any"
         },
-        value: null,
+        value: "Any",
         getFilterString: function() {
             if (this.value !== this.default.value) {
                 return "Identified " + this.value + "\n";
@@ -613,14 +675,14 @@ var rule = {
             }
         },
         reset: function() {
-            this.value = null;
+            this.value = this.default.value;
         }
     },
     corrupted: {
         default: {
-            value: null
+            value: "Any"
         },
-        value: null,
+        value: "Any",
         getFilterString: function() {
             if (this.value !== this.default.value) {
                 return "Corrupted " + this.value + "\n";
@@ -630,14 +692,14 @@ var rule = {
             }
         },
         reset: function() {
-            this.value = null;
+            this.value = this.default.value;
         }
     },
     shaperitem: {
         default: {
-            value: null
+            value: "Any"
         },
-        value: null,
+        value: "Any",
         getFilterString: function() {
             if (this.value !== this.default.value) {
                 return "ShaperItem " + this.value + "\n";
@@ -647,14 +709,14 @@ var rule = {
             }
         },
         reset: function() {
-            this.value = null;
+            this.value = this.default.value;
         }
     },
     elderitem: {
         default: {
-            value: null
+            value: "Any"
         },
-        value: null,
+        value: "Any",
         getFilterString: function() {
             if (this.value !== this.default.value) {
                 return "ElderItem " + this.value + "\n";
@@ -664,7 +726,7 @@ var rule = {
             }
         },
         reset: function() {
-            this.value = null;
+            this.value = this.default.value;
         }
     },
     reset: function()  {
@@ -694,27 +756,29 @@ var rule = {
     },
     getFilterString: function() {
         var output = "";
-        
+        // overhead
         output += "#!rule " + this.name + "\n";
         for (var i=0; i<this.comments.length; i++) {
             output += "# " + this.comments[i] + "\n";
         }
+        // constraints
         output += this.type + "\n";
         output += this.classes.getFilterString();
         output += this.basetypes.getFilterString();
         output += this.itemlevel.getFilterString();
         output += this.droplevel.getFilterString();
-        output += this.quality.getFilterString();
         output += this.rarity.getFilterString();
+        output += this.quality.getFilterString();
         output += this.sockets.getFilterString();
         output += this.linkedsockets.getFilterString();
         output += this.socketgroup.getFilterString();
         output += this.width.getFilterString();
         output += this.height.getFilterString();
-        output += this.identified.getFilterString();
-        output += this.corrupted.getFilterString();
         output += this.shaperitem.getFilterString();
         output += this.elderitem.getFilterString();
+        output += this.identified.getFilterString();
+        output += this.corrupted.getFilterString();
+        // display
         output += this.text.getFilterString();
         output += this.background.getFilterString();
         output += this.border.getFilterString();

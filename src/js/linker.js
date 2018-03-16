@@ -5,12 +5,12 @@ function tokenizeLine(lineIn) {
     var temp = lineIn.split('"');
     for (var i=0; i<temp.length; i++) {
         if (i%2 === 0) {
-            if (temp[i].length > 0) {
+            if (temp[i].length > 0 && temp[i] !== " ") {
                 result = result.concat(temp[i].trim().split(" "));
             }
         }
         else {
-            result.push(temp[i]);
+            result.push(temp[i].trim());
         }
     }
     return result;
@@ -114,14 +114,14 @@ function updateModelFromCode(cm) {
                 break;
             case 'PlayAlertSound':
                 if (tokens.length > 2) {
-                    rule.positional = false;
+                    rule.sound.positional = false;
                     rule.sound.setId(tokens[1]);
                     rule.sound.setVolume(tokens[2]);
                 }
                 break;
             case 'PlayAlertSoundPositional':
                 if (tokens.length > 2) {
-                    rule.positional = true;
+                    rule.sound.positional = true;
                     rule.sound.setId(tokens[1]);
                     rule.sound.setVolume(tokens[2]);
                 }
@@ -204,6 +204,116 @@ function updateModelFromCode(cm) {
 function updateControlsFromModel() {
     console.log("   start updateControlsFromModel");
     
+    // Theme stuff
+    $("#styles-text-size>input[type='range']").val(rule.text.size);
+    $("#styles-text-color>input[type='color']").spectrum('set', rule.text.getColor());
+    $("#styles-background-color>input[type='color']").spectrum('set', rule.background.getColor());
+    $("#styles-border-color>input[type='color']").spectrum('set', rule.border.getColor());
+    $("#styles-sound-volume>input[type='range']").val(rule.sound.volume);
+    if (rule.sound.positional && !$("#styles-sound-positional>.checkbox").hasClass('checked')) {
+        $("#styles-sound-positional>.checkbox").addClass('checked');
+    }
+    else {
+        $("#styles-sound-positional>.checkbox").removeClass('checked');
+    }
+    $(".sound").removeClass('selected');
+    if (rule.sound.volume > 0) {
+        $(".sound:nth-child(" + rule.sound.id + ")").addClass('selected');
+    }
+    
+    // Constraints stuff
+    $('#constraints .radio-item.selected').removeClass('selected');
+    // itemlevel
+    $('#constraint-itemlevel .radio-item').each(function(num, e) {
+        if($(e).text() === rule.itemlevel.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-droplevel>input').val(rule.droplevel.value == rule.droplevel.default.value ? "" : rule.droplevel.value);
+    // droplevel
+    $('#constraint-droplevel .radio-item').each(function(num, e) {
+        if($(e).text() === rule.droplevel.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-droplevel>input').val(rule.droplevel.value == rule.droplevel.default.value ? "" : rule.droplevel.value);
+    // rarity
+    $('#constraint-rarity .radio-item').each(function(num, e) {
+        if($(e).text() === rule.rarity.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-rarity>input').val(rule.rarity.value == rule.rarity.default.value ? "" : rule.rarity.value);
+    // quality
+    $('#constraint-quality .radio-item').each(function(num, e) {
+        if($(e).text() === rule.quality.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-quality>input').val(rule.quality.value == rule.quality.default.value ? "" : rule.quality.value);
+    // sockets
+    $('#constraint-sockets .radio-item').each(function(num, e) {
+        if($(e).text() === rule.sockets.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-sockets>input').val(rule.sockets.value == rule.sockets.default.value ? "" : rule.sockets.value);
+    // linkedsockets
+    $('#constraint-linkedsockets .radio-item').each(function(num, e) {
+        if($(e).text() === rule.linkedsockets.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-linkedsockets>input').val(rule.linkedsockets.value == rule.linkedsockets.default.value ? "" : rule.linkedsockets.value);
+    // socketgroup
+    $('#constraint-socketgroup>input').val(rule.socketgroup.value == rule.socketgroup.default.value ? "" : rule.socketgroup.value);
+    // width
+    $('#constraint-width .radio-item').each(function(num, e) {
+        if($(e).text() === rule.width.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-width>input').val(rule.width.value == rule.width.default.value ? "" : rule.width.value);
+    // height
+    $('#constraint-height .radio-item').each(function(num, e) {
+        if($(e).text() === rule.height.operator) {
+            $(e).addClass('selected');
+        }
+    });
+    $('#constraint-height>input').val(rule.height.value == rule.height.default.value ? "" : rule.height.value);
+    // shaperitem
+    $('#constraint-shaperitem .radio-item').each(function(num, e) {
+        if($(e).text() === rule.shaperitem.value) {
+            $(e).addClass('selected');
+        }
+    });
+    // elderitem
+    $('#constraint-elderitem .radio-item').each(function(num, e) {
+        if($(e).text() === rule.elderitem.value) {
+            $(e).addClass('selected');
+        }
+    });
+    // identified
+    $('#constraint-identified .radio-item').each(function(num, e) {
+        if($(e).text() === rule.identified.value) {
+            $(e).addClass('selected');
+        }
+    });
+    // corrupted
+    $('#constraint-corrupted .radio-item').each(function(num, e) {
+        if($(e).text() === rule.corrupted.value) {
+            $(e).addClass('selected');
+        }
+    });
+    
+    // Keyword stuff
+    $('#keyword-display').empty();
+    for (var i=0; i<rule.classes.list.length; i++) {
+        $('#keyword-display').prepend("<span class='class-item keyword-item'>" + rule.classes.list[i] + "<i class='fa fa-fw fa-times-circle'></i></span>")
+    }
+    for (var i=0; i<rule.basetypes.list.length; i++) {
+        $('#keyword-display').append("<span class='basetype-item keyword-item'>" + rule.basetypes.list[i] + "<i class='fa fa-fw fa-times-circle'></i></span>")
+    }
     
     console.log("   end updateControlsFromModel");
 }
@@ -257,15 +367,34 @@ function updateModelFromControls() {
     rule.quality.operator = htmlDecode($("#constraint-quality .radio-item.selected").text());
     rule.quality.setValue($("#constraint-quality input").val());
     rule.sockets.operator = htmlDecode($("#constraint-sockets .radio-item.selected").text());
-    rule.sockets.setValue($("#constraint-sockets input").val());
+    rule.sockets.setValue($("#constraint-sockets select").val());
     rule.linkedsockets.operator = htmlDecode($("#constraint-linkedsockets .radio-item.selected").text());
-    rule.linkedsockets.setValue($("#constraint-linkedsockets input").val());
+    rule.linkedsockets.setValue($("#constraint-linkedsockets select").val());
     rule.height.operator = htmlDecode($("#constraint-height .radio-item.selected").text());
-    rule.height.setValue($("#constraint-height input").val());
+    rule.height.setValue($("#constraint-height select").val());
     rule.width.operator = htmlDecode($("#constraint-width .radio-item.selected").text());
-    rule.width.setValue($("#constraint-width input").val());
-    
+    rule.width.setValue($("#constraint-width select").val());
+    rule.rarity.operator = htmlDecode($("#constraint-rarity .radio-item.selected").text());
+    rule.rarity.value = $("#constraint-rarity select").val() || "";
+    rule.shaperitem.value = $("#constraint-shaperitem .radio-item.selected").text();
+    rule.elderitem.value = $("#constraint-elderitem .radio-item.selected").text();
+    rule.identified.value = $("#constraint-identified .radio-item.selected").text();
+    rule.corrupted.value = $("#constraint-corrupted .radio-item.selected").text();
+    rule.socketgroup.value = $("#constraint-socketgroup input").val();
     // Keyword stuff
+    var classes = [];
+    var basetypes = [];
+    $(".keyword-item").each(function(){
+        var self = $(this);
+        if (self.hasClass('basetype-item')) {
+            basetypes.push(self.text());
+        }
+        else if (self.hasClass('class-item')) {
+            classes.push(self.text());
+        }
+    });
+    rule.classes.list = classes;
+    rule.basetypes.list = basetypes;
     
     console.log("   end updateModelFromControls");
 }

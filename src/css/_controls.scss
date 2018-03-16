@@ -25,14 +25,12 @@
 /*===== Radio Group =====*/
 .radio-group {
     display: flex;
-    border: 2px solid $c-primary;
     
     .radio-item {
         color: $c-primary;
         background-color: $c-primary-bkg;
         padding: $s-default-padding;
         cursor: pointer;
-        border-right: 2px solid $c-primary;
     }
     .radio-item:not(:last-of-type) {
         border-right: none;
@@ -109,21 +107,24 @@ input[type='text']::placeholder {
     border-color: $c-primary;
 }
 .checkbox>div {
-    content: "";
     display: none;
-    position: relative;
-    top: .2rem;
-    left: .125rem;
-    width: .875rem;
-    height: .5rem;
-    border-left: 3px solid #111;
-    border-bottom: 3px solid #111;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
 }
 .checkbox.checked {
     background-color: $c-primary;
+    div {
+        content: "";
+        display: block;
+        position: relative;
+        top: .2rem;
+        left: .125rem;
+        width: .875rem;
+        height: .5rem;
+        border-left: 3px solid #111;
+        border-bottom: 3px solid #111;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
 }
 
 /*===== Sliders =====*/

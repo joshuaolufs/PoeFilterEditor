@@ -3,6 +3,12 @@ $(document).ready(function(){
     $(".radio-item").on("click", function() {
         $(this).siblings(".radio-item").removeClass("selected");
         $(this).addClass("selected");
+        onControlChange(editor);
+    });
+    
+    // Trigger change propagation when input changes
+    $(".input-group>input, .input-group>select").on("input change", function() {
+        onControlChange(editor);
     });
     
     // text input tabout

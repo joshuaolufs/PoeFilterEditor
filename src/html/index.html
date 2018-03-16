@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="FilterEditor">
+<html lang="en">
     <head>
         <!-- meta data -->
         <meta charset='UTF-8'>
@@ -121,6 +121,7 @@
                 <div id='constraints' class='pane'>
                     <div class='pane-handle'>Constraints</div>
                     <div id='constraint-itemlevel' class='input-group'>
+                        <div class='constraint-label'>ItemLevel</div>
                         <div class='radio-group'>
                             <div class='radio-item radio-item-less'>&lt;</div>
                             <div class='radio-item radio-item-less-equal'>&lt;=</div>
@@ -129,20 +130,9 @@
                             <div class='radio-item radio-item-greater'>&gt;</div>
                         </div>
                         <input type='number'>
-                        <div class='constraint-label'>ItemLevel</div>
                     </div>
                     <div id='constraint-droplevel' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <input type='number'>
                         <div class='constraint-label'>DropLevel</div>
-                    </div>
-                    <div id='constraint-quality' class='input-group'>
                         <div class='radio-group'>
                             <div class='radio-item radio-item-less'>&lt;</div>
                             <div class='radio-item radio-item-less-equal'>&lt;=</div>
@@ -151,79 +141,9 @@
                             <div class='radio-item radio-item-greater'>&gt;</div>
                         </div>
                         <input type='number'>
-                        <div class='constraint-label'>Quality</div>
-                    </div>
-                    <div id='constraint-sockets' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value=''></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                            <option value='4'>5</option>
-                            <option value='4'>6</option>
-                        </select>
-                        <div class='constraint-label'>Sockets</div>
-                    </div>
-                    <div id='constraint-linkedsockets' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value=''></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                            <option value='4'>5</option>
-                            <option value='4'>6</option>
-                        </select>
-                        <div class='constraint-label'>LinkedSockets</div>
-                    </div>
-                    <div id='constraint-height' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value=''></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                        </select>
-                        <div class='constraint-label'>Height</div>
-                    </div>
-                    <div id='constraint-width' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value=''></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                        </select>
-                        <div class='constraint-label'>Width</div>
                     </div>
                     <div id='constraint-rarity' class='input-group'>
+                        <div class='constraint-label'>Rarity</div>
                         <div class='radio-group'>
                             <div class='radio-item radio-item-less'>&lt;</div>
                             <div class='radio-item radio-item-less-equal'>&lt;=</div>
@@ -233,49 +153,128 @@
                         </div>
                         <select>
                             <option value=''></option>
-                            <option value='normal'>Normal</option>
-                            <option value='magic'>Magic</option>
-                            <option value='rare'>Rare</option>
-                            <option value='unique'>Unique</option>
+                            <option value='Normal'>Normal</option>
+                            <option value='Magic'>Magic</option>
+                            <option value='Rare'>Rare</option>
+                            <option value='Unique'>Unique</option>
                         </select>
-                        <div class='constraint-label'>Rarity</div>
                     </div>
-
-                    <div id='constraint-shaperitem' class='input-group'>
+                    <div id='constraint-quality' class='input-group'>
+                        <div class='constraint-label'>Quality</div>
                         <div class='radio-group'>
-                            <div class='radio-item'>True</div>
-                            <div class='radio-item selected'>Any</div>
-                            <div class='radio-item'>False</div>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
                         </div>
-                        <div class='constraint-label'>ShaperItem</div>
+                        <input type='number'>
                     </div>
-                    <div id='constraint-elderitem' class='input-group'>
+                    <div id='constraint-sockets' class='input-group'>
+                        <div class='constraint-label'>Sockets</div>
                         <div class='radio-group'>
-                            <div class='radio-item'>True</div>
-                            <div class='radio-item selected'>Any</div>
-                            <div class='radio-item'>False</div>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
                         </div>
-                        <div class='constraint-label'>ElderItem</div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='4'>5</option>
+                            <option value='4'>6</option>
+                        </select>
                     </div>
-                    <div id='constraint-identified' class='input-group'>
+                    <div id='constraint-linkedsockets' class='input-group'>
+                        <div class='constraint-label'>LinkedSockets</div>
                         <div class='radio-group'>
-                            <div class='radio-item'>True</div>
-                            <div class='radio-item selected'>Any</div>
-                            <div class='radio-item'>False</div>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
                         </div>
-                        <div class='constraint-label'>Identified</div>
-                    </div>
-                    <div id='constraint-corrupted' class='input-group'>
-                        <div class='radio-group'>
-                            <div class='radio-item'>True</div>
-                            <div class='radio-item selected'>Any</div>
-                            <div class='radio-item'>False</div>
-                        </div>
-                        <div class='constraint-label'>Corrupted</div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='4'>5</option>
+                            <option value='4'>6</option>
+                        </select>
                     </div>
                     <div id='constraint-socketgroup' class='input-group'>
-                        <input type='text'>
                         <div class='constraint-label'>SocketGroup</div>
+                        <input type='text'>
+                    </div>
+                    <div id='constraint-width' class='input-group'>
+                        <div class='constraint-label'>Width</div>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                        </select>
+                    </div>
+                    <div id='constraint-height' class='input-group'>
+                        <div class='constraint-label'>Height</div>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                        </select>
+                    </div>
+                    <div id='constraint-shaperitem' class='input-group'>
+                        <div class='constraint-label'>ShaperItem</div>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                    </div>
+                    <div id='constraint-elderitem' class='input-group'>
+                        <div class='constraint-label'>ElderItem</div>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                    </div>
+                    <div id='constraint-identified' class='input-group'>
+                        <div class='constraint-label'>Identified</div>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
+                    </div>
+                    <div id='constraint-corrupted' class='input-group'>
+                        <div class='constraint-label'>Corrupted</div>
+                        <div class='radio-group'>
+                            <div class='radio-item'>True</div>
+                            <div class='radio-item selected'>Any</div>
+                            <div class='radio-item'>False</div>
+                        </div>
                     </div>
                 </div>
                 <div id='keyword' class='pane'>

@@ -76,13 +76,7 @@ $(document).ready(function(){
     
     // checkbox functionality
     $(document).on("click", ".checkbox", function(){
-        $(this).children('div').toggle();
-        if ($(this).hasClass("checked")) {
-            $(this).removeClass("checked");
-        }
-        else {
-            $(this).addClass("checked");
-        }
+        $(this).toggleClass('checked');
         onControlChange(editor);
     });
     

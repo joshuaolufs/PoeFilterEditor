@@ -8,6 +8,7 @@ $(document).ready(function(){
                 $("#keyword-display").prepend("<span class='class-item keyword-item'>" + self.val().trim() + "<i class='fa fa-fw fa-times-circle'></i></span>")
                 // clear the contents
                 self.val("");
+                onControlChange(editor);
             }
         }
     });
@@ -19,11 +20,13 @@ $(document).ready(function(){
                 // append a new tag to the keyword area
                 $("#keyword-display").append("<span class='basetype-item keyword-item'>" + $(this).val().trim() + "<i class='fa fa-fw fa-times-circle'></i></span>")
                 // clear the contents
-                $(this).val("");
+                self.val("");
+                onControlChange(editor);
             }
         }
     });
     $(document).on("click", ".keyword-item>.fa", function() {
         $(this).parent().remove();
+        onControlChange(editor);
     });
 });
