@@ -170,6 +170,38 @@
                         </div>
                         <input type='number'>
                     </div>
+                    <div id='constraint-width' class='input-group'>
+                        <div class='constraint-label'>Width</div>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                        </select>
+                    </div>
+                    <div id='constraint-height' class='input-group'>
+                        <div class='constraint-label'>Height</div>
+                        <div class='radio-group'>
+                            <div class='radio-item radio-item-less'>&lt;</div>
+                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
+                            <div class='radio-item radio-item-equal selected'>=</div>
+                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
+                            <div class='radio-item radio-item-greater'>&gt;</div>
+                        </div>
+                        <select>
+                            <option value='0'></option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                        </select>
+                    </div>
                     <div id='constraint-sockets' class='input-group'>
                         <div class='constraint-label'>Sockets</div>
                         <div class='radio-group'>
@@ -211,38 +243,6 @@
                     <div id='constraint-socketgroup' class='input-group'>
                         <div class='constraint-label'>SocketGroup</div>
                         <input type='text'>
-                    </div>
-                    <div id='constraint-width' class='input-group'>
-                        <div class='constraint-label'>Width</div>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value='0'></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                        </select>
-                    </div>
-                    <div id='constraint-height' class='input-group'>
-                        <div class='constraint-label'>Height</div>
-                        <div class='radio-group'>
-                            <div class='radio-item radio-item-less'>&lt;</div>
-                            <div class='radio-item radio-item-less-equal'>&lt;=</div>
-                            <div class='radio-item radio-item-equal selected'>=</div>
-                            <div class='radio-item radio-item-greater-equal'>&gt;=</div>
-                            <div class='radio-item radio-item-greater'>&gt;</div>
-                        </div>
-                        <select>
-                            <option value='0'></option>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                        </select>
                     </div>
                     <div id='constraint-shaperitem' class='input-group'>
                         <div class='constraint-label'>ShaperItem</div>
@@ -287,6 +287,25 @@
                 </div>
             </div>
         </main>
+        <div id='modal-overlay'></div>
+        <div id='modal-import' class='modal'>
+            <div class='modal-handle'>Import Filters</div>
+            <div class='modal-body'>
+                <div class='modal-input-group'>
+                    <input id='import-file-input' class='file-input' name='import-file-input' type='file' multiple><label class='label-button' for='import-file-input'>Select File</label>
+                    <div class='current-file'></div>
+                </div>
+                <div class='drop-area modal-input-group'></div>
+                <div class='modal-input-group'>
+                    <input id='pastebin-import' type='text'>
+                    <span>Import from Pastebin</span>
+                </div>
+                <div class='modal-input-group align-right'>
+                    <div id='confirm-import' class='button disabled'>Import</div>
+                    <div id='cancel-import' class='button'>Cancel</div>
+                </div>
+            </div>
+        </div>
     </body>
     <script src="js/allScripts.min.js" async></script>
 </html>

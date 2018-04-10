@@ -757,9 +757,9 @@ var rule = {
     getFilterString: function() {
         var output = "";
         // overhead
-        output += "#!rule " + this.name + "\n";
+        output += "#! Rule: " + this.name + "\n";
         for (var i=0; i<this.comments.length; i++) {
-            output += "# " + this.comments[i] + "\n";
+            output += "#! " + this.comments[i] + "\n";
         }
         // constraints
         output += this.type + "\n";
@@ -769,11 +769,11 @@ var rule = {
         output += this.droplevel.getFilterString();
         output += this.rarity.getFilterString();
         output += this.quality.getFilterString();
+        output += this.width.getFilterString();
+        output += this.height.getFilterString();
         output += this.sockets.getFilterString();
         output += this.linkedsockets.getFilterString();
         output += this.socketgroup.getFilterString();
-        output += this.width.getFilterString();
-        output += this.height.getFilterString();
         output += this.shaperitem.getFilterString();
         output += this.elderitem.getFilterString();
         output += this.identified.getFilterString();

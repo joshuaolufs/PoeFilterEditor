@@ -78,6 +78,11 @@ $(document).ready(function(){
         // reset menu
         updateTreeviewMenu();
         onTreeSelect(editor);
+        // disable the export button if no filters exist
+        if ($('.tv-filter').length < 1) {
+            $('#export').removeClass('disabled');
+            $('#export').addClass('disabled');
+        }
     });
     
     $(document).on("click", "#tv-cancel-delete", function() {
@@ -111,6 +116,9 @@ $(document).ready(function(){
         $("#tv-label-input").val($("#treeview .selected>.tv-handle>.tv-label").text());
         $("#tv-label-input").slideDown(200);
         $("#tv-label-input").focus();
+        
+        // enable export button
+        $('#export').removeClass('disabled');
         
         // update menu
         updateTreeviewMenu();
@@ -166,7 +174,7 @@ $(document).ready(function(){
                             <div class='tv-handle'>\
                                 <div class='tv-label'>New Rule</div>\
                             </div>\
-                            <pre class='tv-code'>#!rule New Rule\n# Descriptive Comment</pre>\
+                            <pre class='tv-code'>#! Rule: New Rule\n#! Descriptive Comment</pre>\
                         </div>";
             var e;
             if ($(current).hasClass("tv-rule")){

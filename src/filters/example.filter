@@ -1,0 +1,76 @@
+# =============================================================================
+#! Name:  example
+#! Authors: metamilo another blabla
+#! Version: 0.0.1
+#! Description:	A sample filter for testing purposes
+# =============================================================================
+
+#! Group: Currency
+	#! Rule: Low
+	Show
+		BaseType "Chromatic Orb" "Jeweller's Orb" "Orb of Chance" "Glassblower's Bauble"
+		SetFontSize 37
+		SetTextColor 218 210 165 250
+		SetBackgroundColor 0 50 0 240
+		SetBorderColor 175 170 100 150
+	#! Rule: Medium
+	Show
+		BaseType "Orb of Scouring" "Cartographer's Chisel" "Silver Coin" "Orb of Fusing" "Blessed Orb" "Orb of Alchemy" "Engineer's Orb" "Annulment Shard"
+		SetFontSize 41
+		SetTextColor 218 210 165 250
+		SetBackgroundColor 0 50 0 245
+		SetBorderColor 228 219 154 150
+	#! Rule: High
+	Show
+		BaseType "Regal Orb" "Chaos Orb" "Vaal Orb" "Gemcutter's Prism" "Orb of Regret" "Ancient Shard" "Orb of Horizons" "Orb of Binding" "Harbinger's Shard"
+		SetFontSize 45
+		SetTextColor 235 225 175 250
+		SetBackgroundColor 10 75 10 240
+		SetBorderColor 235 225 175 250
+		PlayAlertSoundPositional 11 100
+	#! Group: Bestiary
+		#! Rule: Good Stuff
+		Show
+			Class "Currency"
+			BaseType "Strong Steel Net" "Bestiary Orb" "Thaumaturgical Net" "Necromancy Net"
+			SetFontSize 45
+			SetTextColor 235 225 175 250
+			SetBackgroundColor 10 75 10 240
+			SetBorderColor 235 225 175 250
+			PlayAlertSoundPositional 11 100
+		#! Rule: Other Stuff
+		Show
+			Class "Currency"
+			BaseType "Net"
+			SetFontSize 41
+			SetTextColor 218 210 165 250
+			SetBackgroundColor 0 50 0 245
+			SetBorderColor 228 219 154 150
+	#! End:
+#! End:
+#! Group: Special Stuff
+	#! Rule: Shaper
+	Show
+		ShaperItem True
+		SetFontSize 45
+		SetTextColor 255 255 255 255
+		SetBackgroundColor 50 50 50 240
+		SetBorderColor 255 255 255 255
+		PlayAlertSoundPositional 8 300
+	#! Rule: Elder
+	Show
+		ElderItem True
+		SetFontSize 45
+		SetTextColor 255 255 255 255
+		SetBackgroundColor 50 50 50 240
+		SetBorderColor 255 255 255 255
+		PlayAlertSoundPositional 8 300
+#! End:
+#! Rule: 6-link
+Show
+	LinkedSockets = 6
+	SetFontSize 45
+	SetTextColor 255 255 255 255
+	SetBackgroundColor 50 50 50 240
+	SetBorderColor 255 255 255 255
+	PlayAlertSoundPositional 1 300

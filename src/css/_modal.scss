@@ -1,0 +1,73 @@
+#modal-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 10000;
+}
+
+.modal {
+    display: none;
+    position: relative;
+    margin: 5rem auto;
+    background-color: #111;
+    max-width: 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    z-index: 10001;
+    
+    .modal-handle {
+        padding: $s-default-padding;
+        color: $c-primary-bkg;
+        background-color: $c-primary;
+    }
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        margin: $s-gutter-large;
+    }
+    .current-file {
+        padding: $s-default-padding;
+        color: $c-primary;
+    }
+}
+
+.modal input[type='file'] {
+    display: none;
+}
+.modal .label-button {
+    display: inline-block;
+    padding: $s-default-padding;
+    border-radius: .25rem;
+    background-color: $c-primary;
+    color: $c-primary-bkg;
+    cursor: pointer;
+}
+
+#pastebin-import {
+    width: 10rem;
+}
+
+.drop-area {
+    width: 100%;
+    height: 10rem;
+    border: 2px dashed #666;
+}
+.modal-input-group {
+    margin: .5rem 0;
+    display: flex;
+    flex-shrink: 0;
+    span {
+        padding: $s-default-padding;
+        color: $c-primary;
+    }
+}
+.modal-input-group.align-right {
+    justify-content: flex-end;
+    div {
+        margin-left: 1rem;
+    }
+}

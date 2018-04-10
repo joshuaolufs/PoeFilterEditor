@@ -189,11 +189,14 @@ function updateModelFromCode(cm) {
                     rule.rarity.operator = "=";
                     rule.rarity.value = tokens[1];
                 }
-            case '#!rule':
-                rule.name = lines[i].substring(6).trim();
+            case '#!':
+                if (tokens[1] === "Rule:") {
+                    rule.name = tokens.slice(2).join(" ");
+                }
+                else {
+                    rule.comments.push(lines[i].substring(2).trim());
+                }
                 break;
-            case '#':
-                rule.comments.push(lines[i].substring(1).trim());
             default:
                 break;
         }
@@ -210,12 +213,12 @@ function updateControlsFromModel() {
     $("#styles-background-color>input[type='color']").spectrum('set', rule.background.getColor());
     $("#styles-border-color>input[type='color']").spectrum('set', rule.border.getColor());
     $("#styles-sound-volume>input[type='range']").val(rule.sound.volume);
-    if (rule.sound.positional && !$("#styles-sound-positional>.checkbox").hasClass('checked')) {
+    
+    $("#styles-sound-positional>.checkbox").removeClass('checked');
+    if (rule.sound.positional) {
         $("#styles-sound-positional>.checkbox").addClass('checked');
     }
-    else {
-        $("#styles-sound-positional>.checkbox").removeClass('checked');
-    }
+    
     $(".sound").removeClass('selected');
     if (rule.sound.volume > 0) {
         $(".sound:nth-child(" + rule.sound.id + ")").addClass('selected');
