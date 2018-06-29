@@ -11,11 +11,11 @@
   "dependencies": {
     "codemirror": "^5.35.0",
     "jquery": "^3.3.1",
-    "npm": "^5.7.1",
+    "npm": "^6.1.0",
     "spectrum-colorpicker": "^1.8.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.4",
     "compression": "^1.7.2",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
@@ -25,6 +25,6 @@
     "gulp-uglify": "^3.0.0",
     "gulp-uglifycss": "^1.0.9",
     "http2": "^3.3.7",
-    "streamqueue": "^1.1.2"
+    "streamqueue": "1.1.1"
   }
 }
